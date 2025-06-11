@@ -1,0 +1,94 @@
+body {
+    font-family: Calibri, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .resume {
+    max-width: 900px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #1a1a1a;
+  }
+  
+  h2 {
+    font-size: 20px;
+    color: #2c3e50;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 16px;
+    margin: 15px 0 5px;
+    color: #1a1a1a;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  .contact a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .section-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .grid > div {
+    flex: 1 1 300px;
+  }
+  
+  ul {
+    padding-left: 20px;
+    margin: 10px 0;
+  }
+  
+  .job-card {
+    background-color: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .small {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+    }
+    .resume {
+      box-shadow: none;
+      border-radius: 0;
+      padding: 20mm;
+    }
+  }  
