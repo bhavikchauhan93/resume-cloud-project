@@ -1,0 +1,27 @@
+{
+  "Records": [
+    {
+      "eventID": "c07566b3",
+      "eventName": "MODIFY",
+      "eventVersion": "1.1",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "ca-central-1",
+      "dynamodb": {
+        "Keys": {
+          "ID": {
+            "S": "Visits"
+          }
+        },
+        "NewImage": {
+          "ID": {
+            "S": "Visits"
+          },
+          "Counter": {
+            "N": "10"
+          }
+        },
+        "StreamViewType": "NEW_IMAGE"
+      }
+    }
+  ]
+}
