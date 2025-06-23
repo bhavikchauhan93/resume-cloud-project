@@ -6,7 +6,7 @@ deploy-infra:
 
 deploy-lambda:
 	aws-vault exec bhavik -- sam build --template templateLambda.yaml && \
-	aws-vault exec bhavik --no-session -- sam deploy --template templateLambda.yaml --stack-name resume-cloud-lambda
+	aws-vault exec bhavik --no-session -- sam deploy --template templateLambda.yaml --stack-name resume-cloud-lambda --guided
 
 deploy-site:
 	aws-vault exec bhavik --no-session -- aws s3 sync ./resume-website s3://resume-cloud-project-website
@@ -22,10 +22,3 @@ delete-lambda-infra:
 
 dynamodb-initial:
 	aws-vault exec bhavik -- aws dynamodb batch-write-item --request-items file://dynamodb-initial.json
-
-lambda-code-change:
-	aws-vault exec bhavik -- sam deploy --template templateLambda.yaml \
-	--no-confirm-changeset \
-	--no-fail-on-empty-changeset \
-	--parameter-overrides LambdaCodeS3Uri=s3://your-bucket/your-function.zip \
-	--resolve-
