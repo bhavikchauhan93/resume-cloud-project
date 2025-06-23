@@ -1,13 +1,31 @@
 .PHONY: Build
 
-build:
-	sam build
-
 deploy-infra:
-	aws-vault exec bhavik --no-session -- sam deploy -- guided
+	aws-vault exec bhavik -- sam build && \
+	aws-vault exec bhavik --no-session -- sam deploy --guided
+
+deploy-lambda:
+	aws-vault exec bhavik -- sam build --template templateLambda.yaml && \
+	aws-vault exec bhavik --no-session -- sam deploy --template templateLambda.yaml --stack-name resume-cloud-lambda
 
 deploy-site:
 	aws-vault exec bhavik --no-session -- aws s3 sync ./resume-website s3://resume-cloud-project-website
 
+copy-lambda-function:
+	aws-vault exec bhavik --no-session -- aws s3 cp ./resume-function/resume-function.zip s3://resume-cloud-project-website
+
 delete-infra:
-	aws-vault exec bhavik sam delete -- stack-name resume-cloud-project
+	aws-vault exec bhavik -- sam delete --stack-name resume-cloud-project
+
+delete-lambda-infra:
+	aws-vault exec bhavik -- sam delete --stack-name resume-cloud-lambda
+
+dynamodb-initial:
+	aws-vault exec bhavik -- aws dynamodb batch-write-item --request-items file://dynamodb-initial.json
+
+lambda-code-change:
+	aws-vault exec bhavik -- sam deploy --template templateLambda.yaml \
+	--no-confirm-changeset \
+	--no-fail-on-empty-changeset \
+	--parameter-overrides LambdaCodeS3Uri=s3://your-bucket/your-function.zip \
+	--resolve-
