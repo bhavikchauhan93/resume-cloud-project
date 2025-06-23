@@ -1,0 +1,12 @@
+{
+    "cloud-resume-website-tbl": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "ID": { "S": "Visits" },
+                    "Counter": { "N": "1" }
+                }
+            }
+        }
+    ]
+}
