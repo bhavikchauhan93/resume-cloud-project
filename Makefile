@@ -12,7 +12,7 @@ deploy-site:
 	aws-vault exec bhavik --no-session -- aws s3 sync ./resume-website s3://resume-cloud-project-website
 
 copy-lambda-function:
-	aws-vault exec bhavik --no-session -- aws s3 cp ./resume-function/resume-function.zip s3://resume-cloud-project-website
+	aws-vault exec bhavik --no-session -- aws s3 cp ./resume_function/resume_function.zip s3://resume-cloud-project-website
 
 delete-infra:
 	aws-vault exec bhavik -- sam delete --stack-name resume-cloud-project
