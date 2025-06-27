@@ -65,7 +65,7 @@ Infrastructure is modularized into two separate SAM templates for easier testing
 - [x] DynamoDB table to store visitor count
 - [x] JavaScript-based dynamic view counter
 - [x] Local development workflow using `sam` CLI and `aws-vault`
-- [ ] Lambda function unit testing
+- [x] Lambda function unit testing
 - [ ] CI/CD pipelines using GitHub Actions 
 
 ---
