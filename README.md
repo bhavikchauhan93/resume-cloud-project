@@ -56,6 +56,31 @@ Infrastructure is modularized into two separate SAM templates for easier testing
 
 ---
 
+## 🧪 Unit Testing
+
+Basic unit tests have been added for the Lambda function using `pytest` and `unittest.mock`. These tests simulate interaction with DynamoDB by mocking `boto3` calls, ensuring safe and repeatable testing without deploying to AWS.
+
+**Test Coverage:**
+- ✅ Verifies counter logic: reads the current value, increments, and writes back
+- ✅ Ensures Lambda returns the correct HTTP response format
+- ✅ Uses `patch` to mock the DynamoDB `table` object
+
+**Run Tests Locally:**
+
+```
+pytest [path to test file] -v -s
+```
+
+**Install Dependencies:**
+
+```
+pip install -r requirements.txt
+# or manually:
+pip install pytest boto3
+```
+
+---
+
 ## ✅ Features Implemented
 
 - [x] Static website deployed to S3
