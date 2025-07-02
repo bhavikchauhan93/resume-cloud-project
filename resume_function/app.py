@@ -1,12 +1,9 @@
 import json
 import boto3
 
-# import requests
-
-dynamoDB = boto3.resource('dynamodb')
-table = dynamoDB.Table('cloud-resume-website-tbl')
-
 def lambda_handler(event, context):
+    dynamoDB = boto3.resource('dynamodb')
+    table = dynamoDB.Table('cloud-resume-website-tbl')
     
     response = table.get_item(
         Key = {
