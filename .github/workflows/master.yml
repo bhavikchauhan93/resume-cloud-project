@@ -15,8 +15,10 @@ jobs:
     name: Lambda Function Unit Test
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v3
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -25,9 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest boto3
+          pip install -r requirements.txt
 
       - name: Run tests
-        run: | 
-          cd /tests/unit/
-          pytest
+        run: pytest tests/unit/
