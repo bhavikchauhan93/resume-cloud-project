@@ -114,7 +114,7 @@ This project uses **GitHub Actions OpenID Connect (OIDC)** to securely deploy we
   "Action": "sts:AssumeRoleWithWebIdentity",
   "Condition": {
     "StringEquals": {
-      "token.actions.githubusercontent.com:sub": "repo:<GitHubOrg/GitHubRepo>:ref:refs/heads/<GitHubBranch>",
+      "token.actions.githubusercontent.com:sub": "repo:<GitHubOrg/GitHubRepo>:pull_request",
       "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
     }
   }
