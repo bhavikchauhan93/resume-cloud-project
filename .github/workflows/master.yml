@@ -31,3 +31,25 @@ jobs:
 
       - name: Run tests
         run: pytest tests/unit/
+    
+  deploy-lambda:
+    needs: test
+    name: Lambda Function Deploy
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Deploy Function
+        uses: aws-actions/setup-sam@v1
+        run: | 
+          sam build --template templateLambda.yaml
+          sam deploy --template templateLambda.yaml --stack-name resume-cloud-lambda --no-confirm-changeset --no-fail-on-empty-changeset
