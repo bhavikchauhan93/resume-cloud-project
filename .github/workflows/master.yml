@@ -64,4 +64,9 @@ jobs:
       - name: Deploy Lambda with SAM
         run: | 
           sam build --template templateLambda.yaml
-          sam deploy --template templateLambda.yaml --stack-name resume-cloud-lambda --no-confirm-changeset --no-fail-on-empty-changeset
+          sam deploy \
+          --template templateLambda.yaml \
+          --stack-name resume-cloud-lambda \
+          --capabilities CAPABILITY_IAM \
+          --no-confirm-changeset \
+          --no-fail-on-empty-changeset
