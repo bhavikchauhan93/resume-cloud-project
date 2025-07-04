@@ -27,7 +27,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref ResumeDynamoDBTable
       PackageType: Zip
-      CodeUri: s3://resume-cloud-project-website/resume-function.zip
+      CodeUri: s3://resume-cloud-project-website/resume_function.zip
       Handler: app.lambda_handler
       Runtime: python3.13
       Architectures:
