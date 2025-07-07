@@ -15,7 +15,9 @@ A serverless resume website built with:
   - JavaScript on the frontend
   - AWS API Gateway + Lambda backend
   - DynamoDB for persistent storage
-- All infrastructure deployed using **AWS SAM templates**
+- All infrastructure deployed using **AWS SAM templates** (Infrastructure as Code)
+- **CI/CD pipelines** via GitHub Actions with secure **OIDC-based IAM role access**
+- Lambda unit tests run automatically on PR merge using **Pytest** and **mocked Boto3**
 - Credentials and access managed securely with `aws-vault`
 - Local testing performed with `sam local` and CLI tools
 
@@ -25,7 +27,7 @@ A serverless resume website built with:
 
 ### ⚙️ Infrastructure
 - Amazon S3 (static hosting)
-- Amazon CloudFront (CDN with HTTPS and OAC)
+- Amazon CloudFront (CDN with HTTPS and Origin Access Control)
 - AWS SAM (Infrastructure as Code)
 - IAM (least-privilege roles and policies)
 - [aws-vault](https://github.com/99designs/aws-vault) (secure credentials management in development environment)
@@ -40,6 +42,15 @@ A serverless resume website built with:
 - HTML/CSS Resume Site
 - JavaScript `fetch()` call to API
 - Hosted via S3 and served through CloudFront
+
+### 🧪 Testing
+- **Pytest + unittest.mock** – Unit testing Lambda with mocked Boto3
+- **SAM CLI (`sam local`)** – Local Lambda/API testing before deploy
+
+### 🔄 CI/CD
+- **GitHub Actions** – Build/test/deploy workflows
+- **OIDC (OpenID Connect)** – Secure, credential-less IAM role assumption
+- **IAM Scoped Roles** – Fine-grained permission sets for deploy automation
 
 ---
 
@@ -128,8 +139,8 @@ This project uses **GitHub Actions OpenID Connect (OIDC)** to securely deploy we
   "Effect": "Allow",
   "Action": ["s3:PutObject", "s3:DeleteObject", "s3:ListBucket"],
   "Resource": [
-    "arn:aws:s3:::<S3-ucket-name>",
-    "arn:aws:s3:::<S3-ucket-name>/*"
+    "arn:aws:s3:::<S3-bucket-name>",
+    "arn:aws:s3:::<S3-bucket-name>/*"
   ]
 }
 ```
@@ -178,6 +189,9 @@ on:
 Hosted via AWS CloudFront  
 URL: _https://d13cnsrxlrqrrl.cloudfront.net_
 
+📌 **Note:**  
+> This project is intended for personal learning and demonstration purposes only.  
+> While the code is public for others exploring cloud infrastructure, contributions are not expected or accepted.
 ---
 
 ## 💡 Key Learnings
@@ -195,3 +209,16 @@ URL: _https://d13cnsrxlrqrrl.cloudfront.net_
 - Designed production-safe GitHub Actions workflows using conditional logic, path-based triggers, and permission-scoped job execution
 
 ---
+## 🔭 Potential Improvements
+
+- **Custom Domain + HTTPS via Route 53 + ACM**  
+  Add a branded domain with HTTPS termination using AWS Certificate Manager and DNS records in Route 53.
+
+- **Geo-Based Visitor Insights**  
+  Use AWS Lambda + CloudFront headers to log region or country of users to DynamoDB.
+
+- **API Rate Limiting or Throttling**  
+  Apply usage plans or quotas via API Gateway to prevent abuse in high-traffic scenarios.
+
+- **Terraform Support**  
+  Recreate the infrastructure using Terraform for cross-platform IaC practice.
