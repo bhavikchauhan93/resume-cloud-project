@@ -6,6 +6,20 @@ The project emphasizes real-world infrastructure skills using AWS, Infrastructur
 
 ---
 
+### 📂 Project Structure (Top-Level)
+
+| File / Folder           | Description                                                                                         |
+|-------------------------|-----------------------------------------------------------------------------------------------------|
+| `resume-website/`       | Contains HTML, CSS, and JavaScript — the frontend code for the resume site.                         |
+| `resume_function/`      | Lambda function source code along with the deployment-ready ZIP file used for AWS deployment.       |
+| `tests/`                | Unit tests for the Lambda function, written to validate logic locally.                              |
+| `template.yaml`         | SAM template (CloudFormation) defining the S3 bucket, bucket policy, Origin Access Control, and CloudFront distribution. |
+| `templateLambda.yaml`   | SAM template defining Lambda function and DynamoDB table resources.    |
+| `dynamodb-initial.json` | JSON data that is inserted into the DynamoDB table when it is first created.    |
+| `.github/workflows/`    | GitHub Actions workflows for automating S3 sync, Lambda deployment, and unit testing.   |
+
+---
+
 ## 🧠 Project Overview
 
 A serverless resume website built with:
@@ -52,6 +66,10 @@ A serverless resume website built with:
 - **OIDC (OpenID Connect)** – Secure, credential-less IAM role assumption
 - **IAM Scoped Roles** – Fine-grained permission sets for deploy automation
 
+---
+## Architecture Diagram
+
+![Architecture Diagram](/images/Cloud-resume-project-architecture.png "Architecture Diagram")
 ---
 
 ## 🔄 Development Workflow

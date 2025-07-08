@@ -1,4 +1,4 @@
-const visitsCount = document.getElementById('visiter-count');
+const visitsCount = document.getElementById('visitor-count');
 
 async function counterUpdate() {
   const url = "Enter Api Gateway end point Url here";
@@ -7,7 +7,5 @@ async function counterUpdate() {
   .then(response => response.json())
   .then(data => visitsCount.innerHTML = `Visits: ${data.Counter}`)
   .catch(error => console.error('Error:', error));
-    
-  visitsCount.innerHTML = `Visits: ${data.Counter}`
 }
 counterUpdate();
