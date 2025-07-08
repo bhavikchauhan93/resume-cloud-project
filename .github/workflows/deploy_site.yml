@@ -8,6 +8,7 @@ on:
       - master
     paths:
       - 'resume-website/**'
+      - 'images/**'
 
 env:
   BUCKET_NAME: resume-cloud-project-website
@@ -34,4 +35,6 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Upload website to S3
-        run: aws s3 sync resume-website/ s3://${{ env.BUCKET_NAME }} --delete
+        run: |
+          aws s3 sync resume-website/ s3://${{ env.BUCKET_NAME }} --delete
+          aws s3 sync images/ s3://${{ env.BUCKET_NAME }}/images --delete
